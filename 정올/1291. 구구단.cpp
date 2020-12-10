@@ -4,6 +4,9 @@
 #include <string>
 #include <queue>
 using namespace std;
+/*
+더 깔끔하게 짤 수 있을 것 같은데... 
+*/
 int main() {
 
 	for (;;) { //문제에서 제대로 출력될 때까지 계속 입력을 받아 처리해야된다. 
