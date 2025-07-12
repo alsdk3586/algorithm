@@ -1,0 +1,48 @@
+#define _CRT_SECURE_NO_DEPRECATE
+#include <iostream>
+
+using namespace std;
+
+int main(void) {
+
+	freopen("inp.inp", "r", stdin);
+	freopen("out.out", "w", stdout);
+
+	char num1[100000] = { 0 };
+	char num2[100000] = { 0 };
+	int num1Ptr = -1;
+	int num2Ptr = -1;
+
+	cin >> num1;
+	cin >> num2;
+
+	for (int i = 0;; i++) {
+		if (num1Ptr == -1 && num1[i] == '\0')
+			num1Ptr = i - 1;
+		if (num2Ptr == -1 && num2[i] == '\0')
+			num2Ptr = i - 1;
+		if (num1Ptr != -1 && num2Ptr != -1)
+			break;
+	}
+
+	char answer[100000] = { 0 };
+	int answerPtr = 0;
+	int upNum = 0;
+	for (; num1Ptr >= 0 || num2Ptr >= 0 || upNum != 0;) {
+		int temp = 0;
+		int n1 = num1Ptr >= 0 ? num1[num1Ptr] - '0' : 0;
+		int n2 = num2Ptr >= 0 ? num2[num2Ptr] - '0' : 0;
+
+		temp = n1 + n2 + upNum;
+		answer[answerPtr++] = temp >= 10 ? (temp % 10) + '0' : temp + '0';
+		upNum = temp / 10;
+		num1Ptr--;
+		num2Ptr--;
+	}
+	if (upNum)
+		cout << upNum;
+	while (answerPtr) {
+		cout << answer[--answerPtr];
+	}
+	return 0;
+}
